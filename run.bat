@@ -39,11 +39,13 @@ echo [+] Installing backend packages...
 pip install -q -r backend\requirements.txt
 echo.
 
-REM 5. Run migrations
+REM 5. Run migrations & seed demo data
 echo [+] Running database migrations...
-cd backend
-python manage.py migrate --run-syncdb
-cd ..
+cd /d "%~dp0backend"
+call "..\venv\Scripts\python.exe" manage.py migrate --run-syncdb
+echo [+] Seeding franchise catalogs and team logins...
+call "..\venv\Scripts\python.exe" manage.py seed_data
+cd /d "%~dp0"
 echo.
 
 REM 6. Install frontend deps
@@ -66,10 +68,10 @@ echo ============================================
 echo.
 
 echo [+] Backend:  http://localhost:8001
-start "FranchiseOS-Backend" cmd /c "cd /d "%~dp0backend" && ..\venv\Scripts\python.exe manage.py runserver 0.0.0.0:8001"
+start "FranchiseOS-Backend" cmd /k "cd /d ""%~dp0backend"" && ""%~dp0venv\Scripts\python.exe"" manage.py runserver 0.0.0.0:8001"
 
 echo [+] Frontend: http://localhost:5501
-start "FranchiseOS-Frontend" cmd /c "cd /d "%~dp0" && npm run dev -- --host 0.0.0.0 --port 5501"
+start "FranchiseOS-Frontend" cmd /k "cd /d ""%~dp0"" && npm run dev -- --host 0.0.0.0 --port 5501"
 
 timeout /t 4 /nobreak >nul
 
@@ -81,7 +83,12 @@ echo.
 echo   Frontend:  http://localhost:5501
 echo   Backend:   http://localhost:8001
 echo.
-echo   Login:     shakeel / admin123 (admin)
+echo   Team Logins:
+echo     • shakeel  / admin123    (Corporate Admin)
+echo     • vinay    / vinay123    (Domino's Owner)
+echo     • mathan   / mathan123   (KFC Owner)
+echo     • ramaguru / ramaguru123 (Street Arabiya Manager)
+echo     • daniska  / daniska123  (Pothys Manager)
 echo.
 echo   Close the CMD windows to stop servers.
 echo ============================================

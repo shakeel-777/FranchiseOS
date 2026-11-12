@@ -47,10 +47,12 @@ info "Installing backend packages..."
 pip install -q -r backend/requirements.txt
 echo ""
 
-# Run migrations
+# Run migrations & seed initial data
 info "Running database migrations..."
 cd backend
 python3 manage.py migrate --run-syncdb
+info "Seeding demo franchises, products, and team accounts..."
+python3 manage.py seed_data
 cd ..
 echo ""
 
@@ -87,7 +89,12 @@ title ""
 title "  Frontend:  http://localhost:5501"
 title "  Backend:   http://localhost:8001"
 title ""
-title "  Login:     shakeel / admin123 (admin)"
+title "  Team Logins:"
+title "    • shakeel  / admin123    (Corporate Admin)"
+title "    • vinay    / vinay123    (Domino's Owner)"
+title "    • mathan   / mathan123   (KFC Owner)"
+title "    • ramaguru / ramaguru123 (Street Arabiya Manager)"
+title "    • daniska  / daniska123  (Pothys Manager)"
 title ""
 title "  Press Ctrl+C to stop both servers"
 title "============================================"

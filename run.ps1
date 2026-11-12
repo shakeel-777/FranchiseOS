@@ -27,10 +27,12 @@ Write-Host "[+] Installing backend Python packages..." -ForegroundColor Green
 pip install -q -r backend\requirements.txt
 Write-Host ""
 
-# 4. Migrate
+# 4. Migrate & Seed Demo Data
 Write-Host "[+] Running database migrations..." -ForegroundColor Green
 Set-Location backend
 python manage.py migrate --run-syncdb
+Write-Host "[+] Seeding franchise catalogs and team logins..." -ForegroundColor Green
+python manage.py seed_data
 Set-Location ..
 Write-Host ""
 
@@ -64,7 +66,12 @@ Write-Host ""
 Write-Host "  Frontend:  http://localhost:5501"
 Write-Host "  Backend:   http://localhost:8001"
 Write-Host ""
-Write-Host "  Login:     shakeel / admin123 (admin)"
+Write-Host "  Team Logins:"
+Write-Host "    • shakeel  / admin123    (Corporate Admin)"
+Write-Host "    • vinay    / vinay123    (Domino's Owner)"
+Write-Host "    • mathan   / mathan123   (KFC Owner)"
+Write-Host "    • ramaguru / ramaguru123 (Street Arabiya Manager)"
+Write-Host "    • daniska  / daniska123  (Pothys Manager)"
 Write-Host ""
 Write-Host "  Close the PowerShell windows to stop."
 Write-Host "============================================" -ForegroundColor Cyan

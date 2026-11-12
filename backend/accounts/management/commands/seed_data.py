@@ -23,27 +23,46 @@ class Command(BaseCommand):
         self.stdout.write("Seeding FranchiseOS with real franchise data...")
 
         # ════════════════════════════════════════════════
-        # USERS
+        # USERS — Team 13 Accounts
         # ════════════════════════════════════════════════
         admin_user, created = User.objects.get_or_create(
             username='shakeel', defaults=dict(
                 email='shakeel@franchiseos.test', first_name='Shakeel',
-                last_name='Admin', is_staff=True, is_superuser=True,
+                last_name='', is_staff=True, is_superuser=True,
             ))
-        if created or not admin_user.has_usable_password():
-            admin_user.set_password('shakeel123')
-            admin_user.is_staff = True
-            admin_user.is_superuser = True
-            admin_user.save()
-        UserProfile.objects.get_or_create(user=admin_user, defaults=dict(role='admin', phone='9000000001'))
+        admin_user.set_password('admin123')
+        admin_user.is_staff = True
+        admin_user.is_superuser = True
+        admin_user.save()
+        UserProfile.objects.update_or_create(user=admin_user, defaults=dict(role='admin', phone='9000000001'))
 
-        vinay_user, created = User.objects.get_or_create(
+        vinay_user, _ = User.objects.get_or_create(
             username='vinay', defaults=dict(
-                email='vinay@franchiseos.test', first_name='Vinay', last_name='Kumar',
+                email='vinay@franchiseos.test', first_name='Vinay', last_name='',
             ))
-        if created or not vinay_user.has_usable_password():
-            vinay_user.set_password('vinay123')
-            vinay_user.save()
+        vinay_user.set_password('vinay123')
+        vinay_user.save()
+
+        mathan_user, _ = User.objects.get_or_create(
+            username='mathan', defaults=dict(
+                email='mathan@franchiseos.test', first_name='Mathan', last_name='',
+            ))
+        mathan_user.set_password('mathan123')
+        mathan_user.save()
+
+        ramaguru_user, _ = User.objects.get_or_create(
+            username='ramaguru', defaults=dict(
+                email='ramaguru@franchiseos.test', first_name='Ramaguru', last_name='',
+            ))
+        ramaguru_user.set_password('ramaguru123')
+        ramaguru_user.save()
+
+        daniska_user, _ = User.objects.get_or_create(
+            username='daniska', defaults=dict(
+                email='daniska@franchiseos.test', first_name='Daniska', last_name='',
+            ))
+        daniska_user.set_password('daniska123')
+        daniska_user.save()
 
         # ════════════════════════════════════════════════
         # REAL FRANCHISE BRANDS
@@ -82,13 +101,35 @@ class Command(BaseCommand):
             )
             franchises[fd['code']] = f
 
-        # Assign vinay to Domino's as franchise owner
+        # Assign team members to franchises with specific roles
         domino = franchises['DOM01']
-        profile, _ = UserProfile.objects.update_or_create(
-            user=vinay_user,
-            defaults=dict(role='franchise_owner', phone='9000000002')
+        kfc = franchises['KFC01']
+        pothys = franchises['POT01']
+        street_arabiya = franchises['STA01']
+
+        # Vinay: Domino's Owner
+        p_vinay, _ = UserProfile.objects.update_or_create(
+            user=vinay_user, defaults=dict(role='franchise_owner', phone='9000000002')
         )
-        profile.franchises.add(domino)
+        p_vinay.franchises.set([domino])
+
+        # Mathan: KFC Owner
+        p_mathan, _ = UserProfile.objects.update_or_create(
+            user=mathan_user, defaults=dict(role='franchise_owner', phone='9000000003')
+        )
+        p_mathan.franchises.set([kfc])
+
+        # Ramaguru: Street Arabiya Store Manager
+        p_rama, _ = UserProfile.objects.update_or_create(
+            user=ramaguru_user, defaults=dict(role='store_manager', phone='9000000004')
+        )
+        p_rama.franchises.set([street_arabiya])
+
+        # Daniska: Pothys Store Manager
+        p_daniska, _ = UserProfile.objects.update_or_create(
+            user=daniska_user, defaults=dict(role='store_manager', phone='9000000005')
+        )
+        p_daniska.franchises.set([pothys])
 
         # ════════════════════════════════════════════════
         # FRANCHISE-SCOPED PRODUCTS
@@ -373,6 +414,10 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS(
             "\n✅ Done! 6 real franchises with 38 individual products seeded.\n"
-            "   Login: shakeel (admin) | vinay (Domino's owner)\n"
-            "   Brands: Domino's, KFC, Pothys, Apollo Pharmacy, Ibaco, Street Arabiya"
+            "   Team 13 Logins:\n"
+            "     • shakeel / admin123 (Corporate Admin)\n"
+            "     • vinay / vinay123 (Domino's Owner)\n"
+            "     • mathan / mathan123 (KFC Owner)\n"
+            "     • ramaguru / ramaguru123 (Street Arabiya Manager)\n"
+            "     • daniska / daniska123 (Pothys Manager)\n"
         ))
