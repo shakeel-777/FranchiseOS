@@ -1,0 +1,22 @@
+{
+  "name": "franchiseos-react",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FranchiseOS — React SPA frontend (converted from the original vanilla HTML/CSS/JS app). Backend: Django REST Framework + SimpleJWT, in backend/.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "playwright": "^1.61.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  }
+}

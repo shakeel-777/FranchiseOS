@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280">
+  <defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs>
+  <rect width="400" height="280" rx="12" fill="#f0fdf4"/>
+  <circle cx="200" cy="140" r="100" fill="url(#g6)" opacity="0.06"/>
+  <rect x="50" y="35" width="300" height="180" rx="12" fill="white" stroke="url(#g6)" stroke-width="2"/>
+  <rect x="50" y="35" width="300" height="45" rx="12" fill="url(#g6)" opacity="0.1"/>
+  <circle cx="80" cy="57" r="15" fill="url(#g6)" opacity="0.15"/>
+  <polyline points="73,57 78,63 87,50" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="115" y="47" width="120" height="8" rx="4" fill="#10b981" opacity="0.15"/>
+  <rect x="115" y="47" width="70" height="8" rx="4" fill="#10b981" opacity="0.5"/>
+  <rect x="115" y="62" width="100" height="8" rx="4" fill="#10b981" opacity="0.1"/>
+  <rect x="70" y="95" width="260" height="50" rx="8" fill="#10b981" opacity="0.06"/>
+  <rect x="80" y="105" width="160" height="8" rx="4" fill="#10b981" opacity="0.2"/>
+  <rect x="80" y="120" width="240" height="6" rx="3" fill="#10b981" opacity="0.1"/>
+  <rect x="120" y="160" width="150" height="35" rx="8" fill="url(#g6)" opacity="0.8"/>
+  <text x="195" y="183" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" fill="white" font-weight="700">APPROVED ✓</text>
+  <text x="200" y="255" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#10b981">Approval Workflow</text>
+</svg>

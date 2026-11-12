@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280">
+  <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs>
+  <rect width="400" height="280" rx="12" fill="#fffdf5"/>
+  <circle cx="200" cy="140" r="100" fill="url(#g3)" opacity="0.06"/>
+  <path d="M200 50l80 20v60c0 40-35 65-80 70-45-5-80-30-80-70V70l80-20z" fill="url(#g3)" opacity="0.15"/>
+  <path d="M200 55l70 17v55c0 35-30 57-70 62-40-5-70-27-70-62V72l70-17z" fill="none" stroke="url(#g3)" stroke-width="2.5"/>
+  <polyline points="170,120 195,145 235,100" stroke="url(#g3)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="200" y="255" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="#f59e0b">Compliance & Safety</text>
+</svg>
